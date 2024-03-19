@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "316190280670",
+    "project_id": "echelon-55069",
+    "storage_bucket": "echelon-55069.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316190280670:android:bff7f447e74d491f76ab4f",
+        "android_client_info": {
+          "package_name": "dev.reaper.echelon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHR5Ol1_jQQrmp8zcOQ6eEhJFhD8SI4pM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
