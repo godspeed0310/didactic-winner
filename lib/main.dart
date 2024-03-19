@@ -4,7 +4,6 @@ import 'package:echelon/firebase_options.dart';
 import 'package:echelon/ui/common/shared_constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:sizer/sizer.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
@@ -14,7 +13,6 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  Animate.restartOnHotReload = true;
   await setupLocator();
   await ThemeManager.initialise();
   runApp(const MainApp());

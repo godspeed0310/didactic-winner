@@ -7,7 +7,6 @@ import 'package:echelon/ui/widgets/common/product_mini_tile/product_mini_tile.da
 import 'package:echelon/ui/widgets/common/product_tile/product_tile.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
@@ -70,9 +69,7 @@ class HomeView extends StackedView<HomeViewModel> {
                             closedElevation: 0,
                             closedBuilder: (_, __) => ProductTile(product),
                             openBuilder: (_, __) => ProductDetailsView(product),
-                          )
-                              .animate()
-                              .shimmer(duration: 300.ms, delay: 150.ms * index);
+                          );
                         },
                         separatorBuilder: (_, __) {
                           return Gap(5.w);
@@ -88,7 +85,7 @@ class HomeView extends StackedView<HomeViewModel> {
                         color: context.onSurface,
                         fontSize: 15.sp,
                       ),
-                    ).animate().shimmer(delay: 150.ms, duration: 300.ms),
+                    ),
                     ListView.separated(
                       padding: EdgeInsets.symmetric(vertical: 2.h),
                       physics: const ClampingScrollPhysics(),
@@ -104,9 +101,7 @@ class HomeView extends StackedView<HomeViewModel> {
                           closedElevation: 0,
                           closedBuilder: (_, __) => ProductMiniTile(product),
                           openBuilder: (_, __) => ProductDetailsView(product),
-                        )
-                            .animate()
-                            .shimmer(delay: 150.ms * index, duration: 300.ms);
+                        );
                       },
                       separatorBuilder: (_, __) {
                         return Gap(2.h);

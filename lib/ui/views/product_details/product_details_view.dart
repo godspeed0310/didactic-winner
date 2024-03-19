@@ -4,7 +4,6 @@ import 'package:echelon/models/product.dart';
 import 'package:echelon/ui/common/app_extensions.dart';
 import 'package:echelon/ui/widgets/common/default_system_overlay/default_system_overlay.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
@@ -51,7 +50,7 @@ class ProductDetailsView extends StackedView<ProductDetailsViewModel> {
                 width: 60.w,
                 height: 60.w,
                 fit: BoxFit.contain,
-              ).animate().scale(),
+              ),
               Gap(2.h),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -64,8 +63,7 @@ class ProductDetailsView extends StackedView<ProductDetailsViewModel> {
                       fontSize: 20.sp,
                       color: Colors.black,
                     ),
-                  ).animate().slideX(
-                      delay: 150.ms, begin: -1.3, end: 0, duration: 300.ms),
+                  ),
                   Gap(2.h),
                   Container(
                     padding: EdgeInsets.symmetric(
@@ -83,15 +81,14 @@ class ProductDetailsView extends StackedView<ProductDetailsViewModel> {
                         color: Colors.black,
                       ),
                     ),
-                  ).animate().slideX(
-                      delay: 300.ms, begin: -1.3, end: 0, duration: 300.ms),
+                  ),
                   Gap(3.h),
                   Text(
                     product.description,
                     style: GoogleFonts.interTight(
                       color: Colors.black,
                     ),
-                  ).animate().slideX(delay: 450.ms, begin: -1.3, end: 0),
+                  ),
                 ],
               ),
             ],
