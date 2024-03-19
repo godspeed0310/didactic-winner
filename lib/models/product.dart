@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
+import 'package:echelon/models/product_rating.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'product.freezed.dart';
@@ -15,6 +16,7 @@ class Product with _$Product {
     required String description,
     required String category,
     required String image,
+    required ProductRating rating,
   }) = _ProductModel;
 
   factory Product.fromJson(Map<String, dynamic> json) =>

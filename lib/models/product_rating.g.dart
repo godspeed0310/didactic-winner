@@ -7,7 +7,13 @@ part of 'product_rating.dart';
 // **************************************************************************
 
 _$ProductRatingImpl _$$ProductRatingImplFromJson(Map<String, dynamic> json) =>
-    _$ProductRatingImpl();
+    _$ProductRatingImpl(
+      rate: (json['rate'] as num).toDouble(),
+      count: json['count'] as int,
+    );
 
 Map<String, dynamic> _$$ProductRatingImplToJson(_$ProductRatingImpl instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'rate': instance.rate,
+      'count': instance.count,
+    };

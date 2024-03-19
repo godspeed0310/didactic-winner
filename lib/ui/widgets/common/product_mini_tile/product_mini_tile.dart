@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:echelon/models/product.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
@@ -55,14 +56,31 @@ class ProductMiniTile extends StackedView<ProductMiniTileModel> {
                     fontSize: 11.sp,
                   ),
                 ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '\$${product.price}',
-                    style: GoogleFonts.interTight(
-                      color: Colors.black,
+                Gap(1.h),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      '\$${product.price}',
+                      style: GoogleFonts.interTight(
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
+                    const Spacer(),
+                    RatingStars(
+                      valueLabelVisibility: false,
+                      value: product.rating.rate,
+                      starSize: 3.w,
+                    ),
+                    Gap(2.w),
+                    Text(
+                      '(${product.rating.count})',
+                      style: GoogleFonts.interTight(
+                        color: Colors.black,
+                      ),
+                    ),
+                    Gap(4.w),
+                  ],
                 ),
               ],
             ),

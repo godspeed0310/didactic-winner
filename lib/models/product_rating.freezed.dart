@@ -20,7 +20,13 @@ ProductRating _$ProductRatingFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductRating {
+  double get rate => throw _privateConstructorUsedError;
+  int get count => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProductRatingCopyWith<ProductRating> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -28,6 +34,8 @@ abstract class $ProductRatingCopyWith<$Res> {
   factory $ProductRatingCopyWith(
           ProductRating value, $Res Function(ProductRating) then) =
       _$ProductRatingCopyWithImpl<$Res, ProductRating>;
+  @useResult
+  $Res call({double rate, int count});
 }
 
 /// @nodoc
@@ -39,13 +47,35 @@ class _$ProductRatingCopyWithImpl<$Res, $Val extends ProductRating>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? rate = null,
+    Object? count = null,
+  }) {
+    return _then(_value.copyWith(
+      rate: null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as double,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$ProductRatingImplCopyWith<$Res> {
+abstract class _$$ProductRatingImplCopyWith<$Res>
+    implements $ProductRatingCopyWith<$Res> {
   factory _$$ProductRatingImplCopyWith(
           _$ProductRatingImpl value, $Res Function(_$ProductRatingImpl) then) =
       __$$ProductRatingImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({double rate, int count});
 }
 
 /// @nodoc
@@ -55,30 +85,62 @@ class __$$ProductRatingImplCopyWithImpl<$Res>
   __$$ProductRatingImplCopyWithImpl(
       _$ProductRatingImpl _value, $Res Function(_$ProductRatingImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? rate = null,
+    Object? count = null,
+  }) {
+    return _then(_$ProductRatingImpl(
+      rate: null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as double,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$ProductRatingImpl implements _ProductRating {
-  const _$ProductRatingImpl();
+  const _$ProductRatingImpl({required this.rate, required this.count});
 
   factory _$ProductRatingImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductRatingImplFromJson(json);
 
   @override
+  final double rate;
+  @override
+  final int count;
+
+  @override
   String toString() {
-    return 'ProductRating()';
+    return 'ProductRating(rate: $rate, count: $count)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ProductRatingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ProductRatingImpl &&
+            (identical(other.rate, rate) || other.rate == rate) &&
+            (identical(other.count, count) || other.count == count));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, rate, count);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProductRatingImplCopyWith<_$ProductRatingImpl> get copyWith =>
+      __$$ProductRatingImplCopyWithImpl<_$ProductRatingImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -89,8 +151,19 @@ class _$ProductRatingImpl implements _ProductRating {
 }
 
 abstract class _ProductRating implements ProductRating {
-  const factory _ProductRating() = _$ProductRatingImpl;
+  const factory _ProductRating(
+      {required final double rate,
+      required final int count}) = _$ProductRatingImpl;
 
   factory _ProductRating.fromJson(Map<String, dynamic> json) =
       _$ProductRatingImpl.fromJson;
+
+  @override
+  double get rate;
+  @override
+  int get count;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProductRatingImplCopyWith<_$ProductRatingImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
