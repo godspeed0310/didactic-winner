@@ -42,6 +42,8 @@ class HiveService {
     }
   }
 
+  AppUser get loggedInUser => loggedInUserListenable.value.values.first;
+
   ValueListenable get loggedInUserListenable => loggedInUserBox.listenable();
   ValueListenable get favouriteListenable => favouriteBox.listenable();
   ValueListenable get cartListenable => cartBox.listenable();

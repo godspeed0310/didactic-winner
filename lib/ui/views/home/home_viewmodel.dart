@@ -1,7 +1,9 @@
 import 'package:chopper/chopper.dart';
 import 'package:echelon/app/app.locator.dart';
 import 'package:echelon/app/app.logger.dart';
+import 'package:echelon/models/app_user.dart';
 import 'package:echelon/models/product.dart';
+import 'package:echelon/services/hive_service.dart';
 import 'package:echelon/services/store_service.dart';
 import 'package:stacked/stacked.dart';
 
@@ -10,6 +12,8 @@ class HomeViewModel extends BaseViewModel {
   final log = getLogger('HomeViewModel');
   final List<Product> topProducts = <Product>[];
   final List<Product> recommendedProducts = <Product>[];
+  final HiveService _hiveService = locator<HiveService>();
+  AppUser get user => _hiveService.loggedInUser;
 
   void initializeViewModel() async {
     await getAPIData();

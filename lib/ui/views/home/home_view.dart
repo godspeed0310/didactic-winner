@@ -1,7 +1,9 @@
 import 'package:animations/animations.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:echelon/models/product.dart';
 import 'package:echelon/ui/common/app_extensions.dart';
 import 'package:echelon/ui/views/product_details/product_details_view.dart';
+import 'package:echelon/ui/views/profile/profile_view.dart';
 import 'package:echelon/ui/widgets/common/default_system_overlay/default_system_overlay.dart';
 import 'package:echelon/ui/widgets/common/product_mini_tile/product_mini_tile.dart';
 import 'package:echelon/ui/widgets/common/product_tile/product_tile.dart';
@@ -31,6 +33,23 @@ class HomeView extends StackedView<HomeViewModel> {
             fontWeight: FontWeight.bold,
             fontSize: 17.sp,
           ),
+          actions: [
+            OpenContainer(
+              closedColor: Colors.transparent,
+              openColor: context.scaffoldBackground,
+              middleColor: Colors.transparent,
+              openElevation: 0,
+              closedElevation: 0,
+              closedBuilder: (_, __) {
+                return CircleAvatar(
+                  backgroundImage: CachedNetworkImageProvider(
+                    viewModel.user.photoURL!,
+                  ),
+                );
+              },
+              openBuilder: (_, __) => ProfileView(viewModel.user),
+            ),
+          ],
         ),
         body: LiquidPullToRefresh(
           onRefresh: () => viewModel.getAPIData(),
