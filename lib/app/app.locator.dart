@@ -15,6 +15,7 @@ import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/firestore_service.dart';
 import '../services/hive_service.dart';
+import '../services/storage_service.dart';
 import '../services/store_service.dart';
 
 final locator = StackedLocator.instance;
@@ -36,4 +37,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => StoreService.create());
   locator.registerLazySingleton(() => HiveService());
   locator.registerLazySingleton(() => FirestoreService());
+  locator.registerLazySingleton(() => StorageService());
 }

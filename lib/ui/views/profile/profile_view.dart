@@ -13,9 +13,7 @@ import 'package:stacked/stacked.dart';
 import 'profile_viewmodel.dart';
 
 class ProfileView extends StackedView<ProfileViewModel> {
-  final AppUser user;
-
-  const ProfileView(this.user, {Key? key}) : super(key: key);
+  const ProfileView({Key? key}) : super(key: key);
 
   @override
   Widget builder(
@@ -23,6 +21,8 @@ class ProfileView extends StackedView<ProfileViewModel> {
     ProfileViewModel viewModel,
     Widget? child,
   ) {
+    final AppUser user = viewModel.user;
+
     return DefaultSystemOverlay(
       scaffold: Scaffold(
         appBar: AppBar(
@@ -52,16 +52,19 @@ class ProfileView extends StackedView<ProfileViewModel> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Badge(
-                  isLabelVisible: viewModel.isEditing,
-                  alignment: Alignment.bottomRight,
-                  label: Icon(Icons.edit_outlined, size: 4.w),
-                  largeSize: 6.w,
-                  backgroundColor: context.primaryColor,
-                  child: CircleAvatar(
-                    radius: 13.w,
-                    backgroundImage: CachedNetworkImageProvider(
-                      viewModel.user.photoURL!,
+                GestureDetector(
+                  onTap: () => viewModel.updateProfilePhoto(),
+                  child: Badge(
+                    isLabelVisible: viewModel.isEditing,
+                    alignment: Alignment.bottomRight,
+                    label: Icon(Icons.edit_outlined, size: 4.w),
+                    largeSize: 6.w,
+                    backgroundColor: context.primaryColor,
+                    child: CircleAvatar(
+                      radius: 13.w,
+                      backgroundImage: CachedNetworkImageProvider(
+                        user.photoURL!,
+                      ),
                     ),
                   ),
                 ),
@@ -72,7 +75,7 @@ class ProfileView extends StackedView<ProfileViewModel> {
                     children: [
                       AnimatedCrossFade(
                         firstChild: Text(
-                          viewModel.user.name ?? 'Echelon User',
+                          user.name ?? 'Echelon User',
                           style: GoogleFonts.inter(
                             fontWeight: FontWeight.bold,
                             fontSize: 15.sp,
@@ -127,6 +130,12 @@ class ProfileView extends StackedView<ProfileViewModel> {
         ),
       ),
     );
+  }
+
+  @override
+  void onViewModelReady(ProfileViewModel viewModel) {
+    viewModel.nameController.text = viewModel.user.name ?? '';
+    super.onViewModelReady(viewModel);
   }
 
   @override

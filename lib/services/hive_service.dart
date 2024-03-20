@@ -35,7 +35,7 @@ class HiveService {
   Future<void> setLoggedInUser(AppUser user) async {
     try {
       log.i('Setting logged in user');
-      loggedInUserBox.put('user', user);
+      loggedInUserBox.put(user.id, user);
     } on Exception catch (e) {
       log.e('Error setting logged in user: $e');
       rethrow;

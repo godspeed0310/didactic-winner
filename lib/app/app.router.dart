@@ -5,7 +5,6 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:echelon/models/app_user.dart' as _i11;
 import 'package:echelon/models/product.dart' as _i9;
 import 'package:echelon/ui/views/home/home_view.dart' as _i2;
 import 'package:echelon/ui/views/login/login_view.dart' as _i4;
@@ -18,7 +17,7 @@ import 'package:flutter/foundation.dart' as _i10;
 import 'package:flutter/material.dart' as _i8;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i12;
+import 'package:stacked_services/stacked_services.dart' as _i11;
 
 class Routes {
   static const homeView = '/home-view';
@@ -105,9 +104,8 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i7.ProfileView: (data) {
-      final args = data.getArgs<ProfileViewArguments>(nullOk: false);
       return _i8.MaterialPageRoute<dynamic>(
-        builder: (context) => _i7.ProfileView(args.user, key: args.key),
+        builder: (context) => const _i7.ProfileView(),
         settings: data,
       );
     },
@@ -147,34 +145,7 @@ class ProductDetailsViewArguments {
   }
 }
 
-class ProfileViewArguments {
-  const ProfileViewArguments({
-    required this.user,
-    this.key,
-  });
-
-  final _i11.AppUser user;
-
-  final _i10.Key? key;
-
-  @override
-  String toString() {
-    return '{"user": "$user", "key": "$key"}';
-  }
-
-  @override
-  bool operator ==(covariant ProfileViewArguments other) {
-    if (identical(this, other)) return true;
-    return other.user == user && other.key == key;
-  }
-
-  @override
-  int get hashCode {
-    return user.hashCode ^ key.hashCode;
-  }
-}
-
-extension NavigatorStateExtension on _i12.NavigationService {
+extension NavigatorStateExtension on _i11.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -248,17 +219,14 @@ extension NavigatorStateExtension on _i12.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToProfileView({
-    required _i11.AppUser user,
-    _i10.Key? key,
+  Future<dynamic> navigateToProfileView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  }) async {
+  ]) async {
     return navigateTo<dynamic>(Routes.profileView,
-        arguments: ProfileViewArguments(user: user, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -338,17 +306,14 @@ extension NavigatorStateExtension on _i12.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithProfileView({
-    required _i11.AppUser user,
-    _i10.Key? key,
+  Future<dynamic> replaceWithProfileView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  }) async {
+  ]) async {
     return replaceWith<dynamic>(Routes.profileView,
-        arguments: ProfileViewArguments(user: user, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

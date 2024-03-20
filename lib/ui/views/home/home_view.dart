@@ -47,7 +47,7 @@ class HomeView extends StackedView<HomeViewModel> {
                   ),
                 );
               },
-              openBuilder: (_, __) => ProfileView(viewModel.user),
+              openBuilder: (_, __) => const ProfileView(),
             ),
           ],
         ),
