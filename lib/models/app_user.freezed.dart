@@ -20,13 +20,21 @@ AppUser _$AppUserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AppUser {
+  @HiveField(0)
   String get id => throw _privateConstructorUsedError;
+  @HiveField(0)
   set id(String value) => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get email => throw _privateConstructorUsedError;
+  @HiveField(1)
   set email(String value) => throw _privateConstructorUsedError;
+  @HiveField(2)
   String? get name => throw _privateConstructorUsedError;
+  @HiveField(2)
   set name(String? value) => throw _privateConstructorUsedError;
+  @HiveField(3)
   String? get photoURL => throw _privateConstructorUsedError;
+  @HiveField(3)
   set photoURL(String? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +47,11 @@ abstract class $AppUserCopyWith<$Res> {
   factory $AppUserCopyWith(AppUser value, $Res Function(AppUser) then) =
       _$AppUserCopyWithImpl<$Res, AppUser>;
   @useResult
-  $Res call({String id, String email, String? name, String? photoURL});
+  $Res call(
+      {@HiveField(0) String id,
+      @HiveField(1) String email,
+      @HiveField(2) String? name,
+      @HiveField(3) String? photoURL});
 }
 
 /// @nodoc
@@ -88,7 +100,11 @@ abstract class _$$AppUserImplCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       __$$AppUserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String email, String? name, String? photoURL});
+  $Res call(
+      {@HiveField(0) String id,
+      @HiveField(1) String email,
+      @HiveField(2) String? name,
+      @HiveField(3) String? photoURL});
 }
 
 /// @nodoc
@@ -132,18 +148,25 @@ class __$$AppUserImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AppUserImpl implements _AppUser {
   _$AppUserImpl(
-      {required this.id, required this.email, this.name, this.photoURL});
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.email,
+      @HiveField(2) this.name,
+      @HiveField(3) this.photoURL});
 
   factory _$AppUserImpl.fromJson(Map<String, dynamic> json) =>
       _$$AppUserImplFromJson(json);
 
   @override
+  @HiveField(0)
   String id;
   @override
+  @HiveField(1)
   String email;
   @override
+  @HiveField(2)
   String? name;
   @override
+  @HiveField(3)
   String? photoURL;
 
   @override
@@ -167,24 +190,32 @@ class _$AppUserImpl implements _AppUser {
 
 abstract class _AppUser implements AppUser {
   factory _AppUser(
-      {required String id,
-      required String email,
-      String? name,
-      String? photoURL}) = _$AppUserImpl;
+      {@HiveField(0) required String id,
+      @HiveField(1) required String email,
+      @HiveField(2) String? name,
+      @HiveField(3) String? photoURL}) = _$AppUserImpl;
 
   factory _AppUser.fromJson(Map<String, dynamic> json) = _$AppUserImpl.fromJson;
 
   @override
+  @HiveField(0)
   String get id;
+  @HiveField(0)
   set id(String value);
   @override
+  @HiveField(1)
   String get email;
+  @HiveField(1)
   set email(String value);
   @override
+  @HiveField(2)
   String? get name;
+  @HiveField(2)
   set name(String? value);
   @override
+  @HiveField(3)
   String? get photoURL;
+  @HiveField(3)
   set photoURL(String? value);
   @override
   @JsonKey(ignore: true)
