@@ -31,6 +31,18 @@ class FirestoreService {
     }
   }
 
+  Future<void> updateProfile(AppUser user) async {
+    try {
+      log.i('Updating user profile');
+      await _users.doc(user.id).update(user.toJson());
+      log.i('Syncing local profile');
+      await _hiveService.setLoggedInUser(user);
+    } on Exception catch (e) {
+      log.e('Error updating user profile: $e');
+      rethrow;
+    }
+  }
+
   Future<bool> userExists(String uid) {
     return _users.doc(uid).get().then((doc) => doc.exists);
   }
