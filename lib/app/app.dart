@@ -1,12 +1,14 @@
+import 'package:echelon/services/firestore_service.dart';
+import 'package:echelon/services/hive_service.dart';
 import 'package:echelon/services/store_service.dart';
 import 'package:echelon/ui/views/home/home_view.dart';
 import 'package:echelon/ui/views/login/login_view.dart';
+import 'package:echelon/ui/views/product_details/product_details_view.dart';
 import 'package:echelon/ui/views/register/register_view.dart';
 import 'package:echelon/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:echelon/ui/views/product_details/product_details_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -16,7 +18,7 @@ import 'package:echelon/ui/views/product_details/product_details_view.dart';
     MaterialRoute(page: LoginView),
     MaterialRoute(page: RegisterView),
     MaterialRoute(page: ProductDetailsView),
-// @stacked-route
+    // @stacked-route
   ],
   dependencies: [
     LazySingleton(classType: BottomSheetService),
@@ -25,6 +27,8 @@ import 'package:echelon/ui/views/product_details/product_details_view.dart';
     LazySingleton(classType: SnackbarService),
     LazySingleton(classType: FirebaseAuthenticationService),
     LazySingleton(classType: StoreService, resolveUsing: StoreService.create),
+    LazySingleton(classType: HiveService),
+    LazySingleton(classType: FirestoreService),
     // @stacked-service
   ],
   logger: StackedLogger(),

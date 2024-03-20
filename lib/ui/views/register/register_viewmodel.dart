@@ -1,4 +1,6 @@
+import 'package:echelon/app/app.locator.dart';
 import 'package:echelon/app/app.router.dart';
+import 'package:echelon/services/firestore_service.dart';
 import 'package:echelon/ui/common/app_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -15,6 +17,7 @@ class RegisterViewModel extends BaseViewModel {
   final SnackbarService _snackbarService = SnackbarService();
   final FirebaseAuthenticationService _authenticationService =
       FirebaseAuthenticationService();
+  final FirestoreService _firestoreService = locator<FirestoreService>();
 
   Future<void> registerWithEmail() async {
     String email = emailController.text;
@@ -22,10 +25,11 @@ class RegisterViewModel extends BaseViewModel {
     String confirmPassword = confirmPasswordController.text;
     if (formKey.currentState!.validate()) {
       if (password == confirmPassword) {
-        _authenticationService.createAccountWithEmail(
+        await _authenticationService.createAccountWithEmail(
           email: email,
           password: password,
         );
+        await _firestoreService.createUser();
         _snackbarService.showSnackbar(
           message: 'Account created successfully',
           duration: 2.s,

@@ -136,7 +136,7 @@ class RegisterView extends StackedView<RegisterViewModel> {
                 backgroundColor: MaterialStatePropertyAll(context.primaryColor),
               ),
               child: Text(
-                'Login',
+                'Register',
                 style: GoogleFonts.interTight(
                   fontSize: 12.sp,
                   color: context.onSurface,

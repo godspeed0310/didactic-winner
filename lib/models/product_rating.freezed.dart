@@ -20,7 +20,9 @@ ProductRating _$ProductRatingFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductRating {
+  @HiveField(0)
   double get rate => throw _privateConstructorUsedError;
+  @HiveField(1)
   int get count => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +37,7 @@ abstract class $ProductRatingCopyWith<$Res> {
           ProductRating value, $Res Function(ProductRating) then) =
       _$ProductRatingCopyWithImpl<$Res, ProductRating>;
   @useResult
-  $Res call({double rate, int count});
+  $Res call({@HiveField(0) double rate, @HiveField(1) int count});
 }
 
 /// @nodoc
@@ -75,7 +77,7 @@ abstract class _$$ProductRatingImplCopyWith<$Res>
       __$$ProductRatingImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double rate, int count});
+  $Res call({@HiveField(0) double rate, @HiveField(1) int count});
 }
 
 /// @nodoc
@@ -108,14 +110,17 @@ class __$$ProductRatingImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ProductRatingImpl implements _ProductRating {
-  const _$ProductRatingImpl({required this.rate, required this.count});
+  const _$ProductRatingImpl(
+      {@HiveField(0) required this.rate, @HiveField(1) required this.count});
 
   factory _$ProductRatingImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductRatingImplFromJson(json);
 
   @override
+  @HiveField(0)
   final double rate;
   @override
+  @HiveField(1)
   final int count;
 
   @override
@@ -152,15 +157,17 @@ class _$ProductRatingImpl implements _ProductRating {
 
 abstract class _ProductRating implements ProductRating {
   const factory _ProductRating(
-      {required final double rate,
-      required final int count}) = _$ProductRatingImpl;
+      {@HiveField(0) required final double rate,
+      @HiveField(1) required final int count}) = _$ProductRatingImpl;
 
   factory _ProductRating.fromJson(Map<String, dynamic> json) =
       _$ProductRatingImpl.fromJson;
 
   @override
+  @HiveField(0)
   double get rate;
   @override
+  @HiveField(1)
   int get count;
   @override
   @JsonKey(ignore: true)

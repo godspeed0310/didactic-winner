@@ -12,10 +12,11 @@ import 'package:echelon/ui/views/product_details/product_details_view.dart'
     as _i6;
 import 'package:echelon/ui/views/register/register_view.dart' as _i5;
 import 'package:echelon/ui/views/startup/startup_view.dart' as _i3;
+import 'package:flutter/foundation.dart' as _i9;
 import 'package:flutter/material.dart' as _i7;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i9;
+import 'package:stacked_services/stacked_services.dart' as _i10;
 
 class Routes {
   static const homeView = '/home-view';
@@ -111,7 +112,7 @@ class ProductDetailsViewArguments {
 
   final _i8.Product product;
 
-  final _i7.Key? key;
+  final _i9.Key? key;
 
   @override
   String toString() {
@@ -130,7 +131,7 @@ class ProductDetailsViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i9.NavigationService {
+extension NavigatorStateExtension on _i10.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -189,7 +190,7 @@ extension NavigatorStateExtension on _i9.NavigationService {
 
   Future<dynamic> navigateToProductDetailsView({
     required _i8.Product product,
-    _i7.Key? key,
+    _i9.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -262,7 +263,7 @@ extension NavigatorStateExtension on _i9.NavigationService {
 
   Future<dynamic> replaceWithProductDetailsView({
     required _i8.Product product,
-    _i7.Key? key,
+    _i9.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,

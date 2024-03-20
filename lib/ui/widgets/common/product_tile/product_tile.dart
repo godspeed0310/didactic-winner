@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:echelon/models/product.dart';
+import 'package:echelon/ui/common/app_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:gap/gap.dart';
@@ -31,15 +32,22 @@ class ProductTile extends StackedView<ProductTileModel> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Align(
-            alignment: Alignment.topRight,
-            child: IconButton(
-              icon: const Icon(
-                Icons.favorite_outline,
-                color: Colors.black,
-              ),
-              onPressed: () {},
-            ),
+          ValueListenableBuilder(
+            valueListenable: viewModel.favouriteListenable,
+            builder: (_, value, __) {
+              final isFavourite = value.values.contains(product);
+
+              return Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  icon: Icon(
+                    isFavourite ? Icons.favorite : Icons.favorite_border,
+                    color: isFavourite ? context.primaryColor : Colors.black,
+                  ),
+                  onPressed: () => viewModel.manageFavourite(product),
+                ),
+              );
+            },
           ),
           CachedNetworkImage(
             imageUrl: product.image,

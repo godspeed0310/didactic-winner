@@ -5,7 +5,6 @@ import 'package:echelon/ui/views/product_details/product_details_view.dart';
 import 'package:echelon/ui/widgets/common/default_system_overlay/default_system_overlay.dart';
 import 'package:echelon/ui/widgets/common/product_mini_tile/product_mini_tile.dart';
 import 'package:echelon/ui/widgets/common/product_tile/product_tile.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,14 +31,6 @@ class HomeView extends StackedView<HomeViewModel> {
             fontWeight: FontWeight.bold,
             fontSize: 17.sp,
           ),
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                EvaIcons.search,
-              ),
-            ),
-          ],
         ),
         body: LiquidPullToRefresh(
           onRefresh: () => viewModel.getAPIData(),

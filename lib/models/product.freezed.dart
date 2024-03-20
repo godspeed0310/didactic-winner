@@ -20,12 +20,19 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Product {
+  @HiveField(0)
   int get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get title => throw _privateConstructorUsedError;
+  @HiveField(2)
   double get price => throw _privateConstructorUsedError;
+  @HiveField(3)
   String get description => throw _privateConstructorUsedError;
+  @HiveField(4)
   String get category => throw _privateConstructorUsedError;
+  @HiveField(5)
   String get image => throw _privateConstructorUsedError;
+  @HiveField(6)
   ProductRating get rating => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,13 +46,13 @@ abstract class $ProductCopyWith<$Res> {
       _$ProductCopyWithImpl<$Res, Product>;
   @useResult
   $Res call(
-      {int id,
-      String title,
-      double price,
-      String description,
-      String category,
-      String image,
-      ProductRating rating});
+      {@HiveField(0) int id,
+      @HiveField(1) String title,
+      @HiveField(2) double price,
+      @HiveField(3) String description,
+      @HiveField(4) String category,
+      @HiveField(5) String image,
+      @HiveField(6) ProductRating rating});
 
   $ProductRatingCopyWith<$Res> get rating;
 }
@@ -121,13 +128,13 @@ abstract class _$$ProductModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String title,
-      double price,
-      String description,
-      String category,
-      String image,
-      ProductRating rating});
+      {@HiveField(0) int id,
+      @HiveField(1) String title,
+      @HiveField(2) double price,
+      @HiveField(3) String description,
+      @HiveField(4) String category,
+      @HiveField(5) String image,
+      @HiveField(6) ProductRating rating});
 
   @override
   $ProductRatingCopyWith<$Res> get rating;
@@ -190,30 +197,37 @@ class __$$ProductModelImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$ProductModelImpl implements _ProductModel {
   const _$ProductModelImpl(
-      {required this.id,
-      required this.title,
-      required this.price,
-      required this.description,
-      required this.category,
-      required this.image,
-      required this.rating});
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.title,
+      @HiveField(2) required this.price,
+      @HiveField(3) required this.description,
+      @HiveField(4) required this.category,
+      @HiveField(5) required this.image,
+      @HiveField(6) required this.rating});
 
   factory _$ProductModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductModelImplFromJson(json);
 
   @override
+  @HiveField(0)
   final int id;
   @override
+  @HiveField(1)
   final String title;
   @override
+  @HiveField(2)
   final double price;
   @override
+  @HiveField(3)
   final String description;
   @override
+  @HiveField(4)
   final String category;
   @override
+  @HiveField(5)
   final String image;
   @override
+  @HiveField(6)
   final ProductRating rating;
 
   @override
@@ -258,30 +272,37 @@ class _$ProductModelImpl implements _ProductModel {
 
 abstract class _ProductModel implements Product {
   const factory _ProductModel(
-      {required final int id,
-      required final String title,
-      required final double price,
-      required final String description,
-      required final String category,
-      required final String image,
-      required final ProductRating rating}) = _$ProductModelImpl;
+      {@HiveField(0) required final int id,
+      @HiveField(1) required final String title,
+      @HiveField(2) required final double price,
+      @HiveField(3) required final String description,
+      @HiveField(4) required final String category,
+      @HiveField(5) required final String image,
+      @HiveField(6) required final ProductRating rating}) = _$ProductModelImpl;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
       _$ProductModelImpl.fromJson;
 
   @override
+  @HiveField(0)
   int get id;
   @override
+  @HiveField(1)
   String get title;
   @override
+  @HiveField(2)
   double get price;
   @override
+  @HiveField(3)
   String get description;
   @override
+  @HiveField(4)
   String get category;
   @override
+  @HiveField(5)
   String get image;
   @override
+  @HiveField(6)
   ProductRating get rating;
   @override
   @JsonKey(ignore: true)

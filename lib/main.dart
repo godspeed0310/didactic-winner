@@ -1,6 +1,7 @@
 import 'package:echelon/app/app.locator.dart';
 import 'package:echelon/app/app.router.dart';
 import 'package:echelon/firebase_options.dart';
+import 'package:echelon/services/hive_service.dart';
 import 'package:echelon/ui/common/shared_constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ Future<void> main() async {
   );
   await setupLocator();
   await ThemeManager.initialise();
+  await locator<HiveService>().initializeHive();
   runApp(const MainApp());
 }
 

@@ -13,6 +13,8 @@ import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_services/src/snackbar/snackbar_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
+import '../services/firestore_service.dart';
+import '../services/hive_service.dart';
 import '../services/store_service.dart';
 
 final locator = StackedLocator.instance;
@@ -32,4 +34,6 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => SnackbarService());
   locator.registerLazySingleton(() => FirebaseAuthenticationService());
   locator.registerLazySingleton(() => StoreService.create());
+  locator.registerLazySingleton(() => HiveService());
+  locator.registerLazySingleton(() => FirestoreService());
 }
