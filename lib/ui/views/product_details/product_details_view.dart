@@ -45,6 +45,26 @@ class ProductDetailsView extends StackedView<ProductDetailsViewModel> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              ValueListenableBuilder(
+                valueListenable: viewModel.favouriteListenable,
+                builder: (_, values, __) {
+                  final List<Product> products = values.values.toList();
+                  final bool isFavourite = products.contains(product);
+
+                  return Align(
+                    alignment: Alignment.topRight,
+                    child: IconButton(
+                      onPressed: () => viewModel.manageFavourite(product),
+                      icon: Icon(
+                        isFavourite ? Icons.favorite : Icons.favorite_border,
+                        color:
+                            isFavourite ? context.primaryColor : Colors.black,
+                        size: 25.sp,
+                      ),
+                    ),
+                  );
+                },
+              ),
               CachedNetworkImage(
                 imageUrl: product.image,
                 width: 60.w,
