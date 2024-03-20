@@ -35,7 +35,7 @@ class HiveService {
   Future<void> setLoggedInUser(AppUser user) async {
     try {
       log.i('Setting logged in user');
-      loggedInUserBox.put(user.id, user);
+      await loggedInUserBox.put(user.id, user);
     } on Exception catch (e) {
       log.e('Error setting logged in user: $e');
       rethrow;
@@ -52,10 +52,10 @@ class HiveService {
     try {
       if (cartBox.containsKey(product.id)) {
         log.i('Removing product from cart');
-        cartBox.delete(product.id);
+        await cartBox.delete(product.id);
       } else {
         log.i('Adding product to cart');
-        cartBox.put(product.id, product);
+        await cartBox.put(product.id, product);
       }
     } on Exception catch (e) {
       log.e('Error managing cart: $e');
@@ -63,14 +63,14 @@ class HiveService {
     }
   }
 
-  void manageFavourites(Product product) {
+  Future<void> manageFavourites(Product product) async {
     try {
       if (favouriteBox.containsKey(product.id)) {
         log.i('Removing product from favourites');
-        favouriteBox.delete(product.id);
+        await favouriteBox.delete(product.id);
       } else {
         log.i('Adding product to favourites');
-        favouriteBox.put(product.id, product);
+        await favouriteBox.put(product.id, product);
       }
     } on Exception catch (e) {
       log.e('Error managing favourites: $e');

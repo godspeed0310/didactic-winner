@@ -5,6 +5,7 @@ import 'package:echelon/models/product.dart';
 import 'package:echelon/services/firestore_service.dart';
 import 'package:echelon/services/hive_service.dart';
 import 'package:echelon/services/storage_service.dart';
+import 'package:echelon/ui/common/app_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -53,11 +54,29 @@ class ProfileViewModel extends BaseViewModel {
         user = user.copyWith(name: nameController.text);
       }
       if (_pickedImage != null) {
-        String url = await _storageService.uploadProfilePhoto(_pickedImage!);
-        log.i('Uploaded profile photo: $url');
-        user = user.copyWith(photoURL: url);
+        String? url =
+            await _storageService.uploadProfilePhoto(_pickedImage!).catchError(
+          (e, s) {
+            log.e('Error uploading profile photo: $e');
+            _snackbarService.showSnackbar(
+              message: 'Error uploading profile photo: $e',
+              duration: 2.s,
+            );
+            return null;
+          },
+        );
+        if (url != null) {
+          log.i('Uploaded profile photo: $url');
+          user = user.copyWith(photoURL: url);
+        }
       }
-      await _firestoreService.updateProfile(user);
+      await _firestoreService.updateProfile(user).catchError((e) {
+        log.e('Error updating user profile: $e');
+        _snackbarService.showSnackbar(
+          message: 'Error updating profile: $e',
+          duration: 2.s,
+        );
+      });
       log.i('Updated user profile: $user');
       isEditing = false;
     } else {

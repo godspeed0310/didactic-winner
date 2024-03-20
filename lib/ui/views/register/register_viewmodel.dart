@@ -1,4 +1,5 @@
 import 'package:echelon/app/app.locator.dart';
+import 'package:echelon/app/app.logger.dart';
 import 'package:echelon/app/app.router.dart';
 import 'package:echelon/services/firestore_service.dart';
 import 'package:echelon/ui/common/app_extensions.dart';
@@ -18,6 +19,7 @@ class RegisterViewModel extends BaseViewModel {
   final FirebaseAuthenticationService _authenticationService =
       FirebaseAuthenticationService();
   final FirestoreService _firestoreService = locator<FirestoreService>();
+  final log = getLogger('RegisterViewModel');
 
   Future<void> registerWithEmail() async {
     String email = emailController.text;
@@ -29,7 +31,15 @@ class RegisterViewModel extends BaseViewModel {
           email: email,
           password: password,
         );
-        await _firestoreService.createUser();
+        await _firestoreService.createUser().catchError(
+          (e, s) {
+            log.e('Error creating account', e, s);
+            _snackbarService.showSnackbar(
+              message: 'Error creating account',
+              duration: 2.s,
+            );
+          },
+        );
         _snackbarService.showSnackbar(
           message: 'Account created successfully',
           duration: 2.s,

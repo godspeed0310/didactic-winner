@@ -5,6 +5,7 @@ import 'package:echelon/models/app_user.dart';
 import 'package:echelon/models/product.dart';
 import 'package:echelon/services/hive_service.dart';
 import 'package:echelon/services/store_service.dart';
+import 'package:echelon/ui/common/app_extensions.dart';
 import 'package:echelon/ui/views/cart/cart_view.dart';
 import 'package:flutter/foundation.dart';
 import 'package:stacked/stacked.dart';
@@ -18,6 +19,7 @@ class HomeViewModel extends BaseViewModel {
   final HiveService _hiveService = locator<HiveService>();
   AppUser get user => _hiveService.loggedInUser;
   final NavigationService _navigationService = locator<NavigationService>();
+  final SnackbarService _snackbarService = locator<SnackbarService>();
 
   ValueListenable get cartListenable => _hiveService.cartListenable;
 
@@ -36,7 +38,16 @@ class HomeViewModel extends BaseViewModel {
     topProducts.clear();
     recommendedProducts.clear();
     Response<List<Product>> result = await runBusyFuture(
-      _storeService.getProducts(limit: 10),
+      _storeService.getProducts(limit: 10).catchError(
+        (e, s) {
+          log.e('Error getting products', e, s);
+          _snackbarService.showSnackbar(
+            message: 'Error getting products: $e',
+            duration: 2.s,
+          );
+          throw Exception('Error getting products: $e');
+        },
+      ),
     );
     topProducts.addAll(result.body!.sublist(0, 5));
     recommendedProducts.addAll(result.body!.sublist(5));

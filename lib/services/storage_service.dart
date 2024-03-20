@@ -16,7 +16,7 @@ class StorageService {
   Reference get _ref =>
       _storage.ref('users/profile_photos/${_auth.currentUser!.uid}.png');
 
-  Future<String> uploadProfilePhoto(XFile xfile) async {
+  Future<String?> uploadProfilePhoto(XFile xfile) async {
     final String path = xfile.path;
     Uint8List file = await File(path).readAsBytes();
     log.i('Uploading profile photo');
