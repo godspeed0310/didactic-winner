@@ -48,6 +48,21 @@ class HiveService {
   ValueListenable get favouriteListenable => favouriteBox.listenable();
   ValueListenable get cartListenable => cartBox.listenable();
 
+  Future<void> manageCart(Product product) async {
+    try {
+      if (cartBox.containsKey(product.id)) {
+        log.i('Removing product from cart');
+        cartBox.delete(product.id);
+      } else {
+        log.i('Adding product to cart');
+        cartBox.put(product.id, product);
+      }
+    } on Exception catch (e) {
+      log.e('Error managing cart: $e');
+      rethrow;
+    }
+  }
+
   void manageFavourites(Product product) {
     try {
       if (favouriteBox.containsKey(product.id)) {

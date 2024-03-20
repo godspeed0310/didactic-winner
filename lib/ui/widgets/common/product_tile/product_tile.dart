@@ -90,7 +90,23 @@ class ProductTile extends StackedView<ProductTileModel> {
                 ),
               ),
             ],
-          )
+          ),
+          const Spacer(),
+          ValueListenableBuilder(
+            valueListenable: viewModel.cartListenable,
+            builder: (_, value, __) {
+              bool inCart = value.values.contains(product);
+              return ElevatedButton(
+                style: ButtonStyle(
+                  fixedSize: MaterialStatePropertyAll(
+                    Size.fromWidth(50.w),
+                  ),
+                ),
+                onPressed: () => viewModel.manageCart(product),
+                child: Text(inCart ? 'Added to cart' : 'Add to cart'),
+              );
+            },
+          ),
         ],
       ),
     );

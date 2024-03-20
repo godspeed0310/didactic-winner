@@ -97,39 +97,51 @@ class ProductDetailsView extends StackedView<ProductDetailsViewModel> {
         bottomNavigationBar: SizedBox(
           height: 10.h,
           child: Center(
-            child: ActionSlider.custom(
-              sliderBehavior: SliderBehavior.move,
-              width: 90.w,
-              height: 8.h,
-              toggleWidth: 15.w,
-              toggleMargin: EdgeInsets.all(2.w),
-              backgroundColor: Colors.black,
-              foregroundChild: DecoratedBox(
-                decoration: ShapeDecoration(
-                  shape: const StadiumBorder(),
-                  color: context.primaryColor,
-                ),
-                child: const Icon(
-                  Icons.add_shopping_cart,
-                  color: Colors.white,
-                ),
-              ),
-              foregroundBuilder: (_, __, child) => child!,
-              outerBackgroundBuilder: (context, state, child) {
-                return Container(
-                  decoration: const ShapeDecoration(
-                    shape: StadiumBorder(),
-                    color: Colors.black,
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Add To Cart',
-                      style: GoogleFonts.interTight(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+            child: ValueListenableBuilder(
+              valueListenable: viewModel.cartListenable,
+              builder: (_, value, __) {
+                final List<Product> products = value.values.toList();
+                final bool isInCart = products.contains(product);
+
+                return ActionSlider.custom(
+                  sliderBehavior: SliderBehavior.move,
+                  action: (controller) {
+                    viewModel.manageCart(product);
+                    controller.reset();
+                  },
+                  width: 90.w,
+                  height: 8.h,
+                  toggleWidth: 15.w,
+                  toggleMargin: EdgeInsets.all(2.w),
+                  backgroundColor: Colors.black,
+                  foregroundChild: DecoratedBox(
+                    decoration: ShapeDecoration(
+                      shape: const StadiumBorder(),
+                      color: context.primaryColor,
+                    ),
+                    child: const Icon(
+                      Icons.add_shopping_cart,
+                      color: Colors.white,
                     ),
                   ),
+                  foregroundBuilder: (_, __, child) => child!,
+                  outerBackgroundBuilder: (context, state, child) {
+                    return Container(
+                      decoration: const ShapeDecoration(
+                        shape: StadiumBorder(),
+                        color: Colors.black,
+                      ),
+                      child: Center(
+                        child: Text(
+                          isInCart ? 'Remove from Cart' : 'Add To Cart',
+                          style: GoogleFonts.interTight(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 );
               },
             ),

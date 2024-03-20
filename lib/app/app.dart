@@ -11,6 +11,7 @@ import 'package:echelon/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:echelon/ui/views/cart/cart_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -21,6 +22,7 @@ import 'package:stacked_services/stacked_services.dart';
     MaterialRoute(page: RegisterView),
     MaterialRoute(page: ProductDetailsView),
     MaterialRoute(page: ProfileView),
+    MaterialRoute(page: CartView),
 // @stacked-route
   ],
   dependencies: [

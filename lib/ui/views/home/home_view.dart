@@ -34,20 +34,40 @@ class HomeView extends StackedView<HomeViewModel> {
             fontSize: 17.sp,
           ),
           actions: [
-            OpenContainer(
-              closedColor: Colors.transparent,
-              openColor: context.scaffoldBackground,
-              middleColor: Colors.transparent,
-              openElevation: 0,
-              closedElevation: 0,
-              closedBuilder: (_, __) {
-                return CircleAvatar(
-                  backgroundImage: CachedNetworkImageProvider(
-                    viewModel.user.photoURL!,
+            ValueListenableBuilder(
+              valueListenable: viewModel.cartListenable,
+              builder: (_, value, __) {
+                return Badge(
+                  alignment: Alignment.topCenter,
+                  smallSize: 2.w,
+                  isLabelVisible: value.values.toList().isNotEmpty,
+                  child: IconButton(
+                    onPressed: () => viewModel.openCart(),
+                    icon: const Icon(
+                      Icons.shopping_cart_outlined,
+                    ),
                   ),
                 );
               },
-              openBuilder: (_, __) => const ProfileView(),
+            ),
+            Gap(2.w),
+            Padding(
+              padding: EdgeInsets.only(right: 5.w),
+              child: OpenContainer(
+                closedColor: Colors.transparent,
+                openColor: context.scaffoldBackground,
+                middleColor: Colors.transparent,
+                openElevation: 0,
+                closedElevation: 0,
+                closedBuilder: (_, __) {
+                  return CircleAvatar(
+                    backgroundImage: CachedNetworkImageProvider(
+                      viewModel.user.photoURL!,
+                    ),
+                  );
+                },
+                openBuilder: (_, __) => const ProfileView(),
+              ),
             ),
           ],
         ),
@@ -63,7 +83,7 @@ class HomeView extends StackedView<HomeViewModel> {
                   padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
                   children: [
                     SizedBox(
-                      height: 43.h,
+                      height: 50.h,
                       child: ListView.separated(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
